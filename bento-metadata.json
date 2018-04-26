@@ -1,0 +1,8 @@
+{
+  "name": "ubuntu-15.04",
+  "version": "2.2.5",
+  "build_timestamp": "20160329204428",
+  "git_revision": "a6489205e5b15064f40aef1b38dad7a1ca2dce00",
+  "box_basename": "ubuntu-15.04-2.2.5.git.a6489205e5b15064f40aef1b38dad7a1ca2dce00",
+  "template": "ubuntu-15.04-amd64"
+}

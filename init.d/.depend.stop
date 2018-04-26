@@ -1,0 +1,13 @@
+TARGETS = unattended-upgrades uuidd glances irqbalance hddtemp resolvconf mysql nginx ufw urandom sendsigs rsyslog umountnfs.sh hwclock.sh rpcbind networking umountfs cryptdisks cryptdisks-early umountroot halt reboot
+sendsigs: irqbalance unattended-upgrades hddtemp uuidd mysql nginx glances
+rsyslog: irqbalance hddtemp mysql nginx sendsigs
+umountnfs.sh: irqbalance unattended-upgrades hddtemp uuidd mysql nginx rsyslog sendsigs glances
+hwclock.sh: uuidd mysql rsyslog
+rpcbind: umountnfs.sh
+networking: hddtemp mysql nginx umountnfs.sh glances rpcbind
+umountfs: irqbalance unattended-upgrades networking urandom hddtemp resolvconf uuidd mysql nginx hwclock.sh umountnfs.sh glances rpcbind
+cryptdisks: umountfs
+cryptdisks-early: cryptdisks umountfs
+umountroot: cryptdisks umountfs cryptdisks-early
+halt: umountroot
+reboot: umountroot
